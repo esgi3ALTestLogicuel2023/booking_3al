@@ -14,13 +14,7 @@ Le code contenu dans cette application **doit** respecter ces règles et en tant
 
 ## Consigne
 
-Vous avez la liberté d'utiliser les outils que vous souhaitez. Vous utiliserez le type de test que vous trouverez nécessaire.
-
-La restitution de votre travail devra se faire à travers une soutenance. Il faudra:
-
-* Décrire votre procédure de tests et la stratégies que vous avez souhaité appliqués,
-* Un contenu (Pull Request) des tests que vous avez réalisé,
-* Démonstration de vos propos
+Pas de consigne
 
 ## Installation
 
@@ -28,10 +22,6 @@ La restitution de votre travail devra se faire à travers une soutenance. Il fau
 $ yarn
 ```
 
-## Database
-Vous pouvez vous connecter à la base de données sur l'outil de votre choix en utilisant les paramètres que vous trouverez dans le fichier: `ormconfig.ts`
-
-Vous pourrez ensuite ajouter des données que vous jugerez utils pour votre stratégie de test.
 
 ## Running the app
 
@@ -41,7 +31,21 @@ $ docker compose up -d #ou docker-compose up -d
 
 # watch mode
 $ yarn start:dev
+```
 
+## Database
+
+Pour faire marcher votre base de données vous devez faire la commande suivante:
+
+```bash
+# Migration
+$ yarn typeorm migration:run
+
+```
+
+Vous pouvez vous connecter à la base de données sur l'outil de votre choix en utilisant les paramètres que vous trouverez dans le fichier: `ormconfig.ts`
+
+Vous pourrez ensuite ajouter des données que vous jugerez utils pour vos tests.
 
 ## Test
 
