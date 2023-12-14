@@ -12,7 +12,7 @@ export class RoomsService {
     private roomRepository: Repository<Room>,
   ) {}
   create(createRoomDto: CreateRoomDto) {
-    return 'This action adds a new room';
+    return this.roomRepository.save(createRoomDto);
   }
 
   findAll(): Promise<Room[]> {
@@ -27,10 +27,10 @@ export class RoomsService {
   }
 
   update(id: number, updateRoomDto: UpdateRoomDto) {
-    return `This action updates a #${id} room`;
+    return this.roomRepository.update(id, updateRoomDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} room`;
+    return this.roomRepository.delete(id);
   }
 }
