@@ -15,7 +15,7 @@ import { UpdateBookingDto } from './dto/update-booking.dto';
 export class BookingsController {
   constructor(private readonly bookingsService: BookingsService) {}
 
-  @Post()
+  @Post() // <-- POST /bookings
   create(
     @Body()
     {
@@ -29,12 +29,12 @@ export class BookingsController {
     return this.bookingsService.create(createBookingDto, userId);
   }
 
-  @Get()
+  @Get() // <-- GET /bookings
   findAll() {
     return this.bookingsService.findAll();
   }
 
-  @Get(':id')
+  @Get(':id') // <-- GET /bookings/1
   findOne(@Param('id') id: string) {
     return this.bookingsService.findOne(id);
   }
