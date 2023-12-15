@@ -18,15 +18,9 @@ export class BookingsController {
   @Post() // <-- POST /bookings
   create(
     @Body()
-    {
-      userId,
-      createBookingDto,
-    }: {
-      userId: string;
-      createBookingDto: CreateBookingDto;
-    },
+    createBookingDto: CreateBookingDto,
   ) {
-    return this.bookingsService.create(createBookingDto, userId);
+    return this.bookingsService.create(createBookingDto);
   }
 
   @Get() // <-- GET /bookings
@@ -43,12 +37,9 @@ export class BookingsController {
   update(
     @Param('id') id: string,
     @Body()
-    {
-      userId,
-      updateBookingDto,
-    }: { userId: string; updateBookingDto: UpdateBookingDto },
+    updateBookingDto: UpdateBookingDto,
   ) {
-    return this.bookingsService.update(id, updateBookingDto, userId);
+    return this.bookingsService.update(id, updateBookingDto);
   }
 
   @Delete('/:id/userId/:userId')
