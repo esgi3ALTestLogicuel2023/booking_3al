@@ -30,7 +30,7 @@ export class RoomsService {
     return this.roomRepository.update(id, updateRoomDto);
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return this.roomRepository.delete(id);
   }
 }
