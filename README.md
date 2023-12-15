@@ -30,7 +30,7 @@ $ yarn
 $ docker compose up -d #ou docker-compose up -d
 
 # watch mode
-$ yarn start:dev
+$F
 ```
 
 ## Database
