@@ -18,7 +18,7 @@ export class BookingsService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(createBookingDto: CreateBookingDto, userId: string) {
+  async create(createBookingDto: CreateBookingDto) {
     try {
       const booking = new Booking();
       booking.startTime = new Date(createBookingDto.startTime);
@@ -29,7 +29,7 @@ export class BookingsService {
         where: { id: createBookingDto.room },
       });
       const user = await this.userRepository.find({
-        where: { id: userId },
+        where: { id: createBookingDto.userId },
       });
       if (user.length === 0) {
         throw new HttpException(
@@ -56,13 +56,13 @@ export class BookingsService {
     return this.bookingRepository.findOne({ where: { id } });
   }
 
-  async update(id: string, updateBookingDto: UpdateBookingDto, userId: string) {
+  async update(id: string, updateBookingDto: UpdateBookingDto) {
     try {
       const booking = await this.bookingRepository.findOne({
         where: { id: id },
         relations: ['room', 'user'],
       });
-      if (booking.user.id !== userId) {
+      if (booking.user.id !== updateBookingDto.userId) {
         throw new HttpException(
           {
             status: HttpStatus.FORBIDDEN,
