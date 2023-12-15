@@ -1,7 +1,7 @@
 
 ## Description
 
-Projet réaliser avec [Nest](https://github.com/nestjs/nest) et il utilise une base de données postgres sur docker. 
+Projet réalisé avec [Nest](https://github.com/nestjs/nest) et il utilise une base de données postgres sur docker. 
 
 Il s'agit d'une application de reservation de salle de réunion. La logique métier à respecter est la suivante:
 
