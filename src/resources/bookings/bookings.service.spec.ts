@@ -16,6 +16,7 @@ describe('BookingsService', () => {
           provide: getRepositoryToken(Booking),
           useValue: {
             find: jest.fn().mockResolvedValue([]),
+            findOne: jest.fn().mockResolvedValue({}),
           },
         },
         {
@@ -67,7 +68,7 @@ describe('BookingsService', () => {
       },
     ];
     jest
-      .spyOn(service, 'findAll')
+      .spyOn(service['bookingRepository'], 'find')
       .mockImplementation(() => Promise.resolve(result));
     expect(await service.findAll()).toEqual(result);
   });
@@ -97,7 +98,7 @@ describe('BookingsService', () => {
       updatedAt: new Date(),
     };
     jest
-      .spyOn(service, 'findOne')
+      .spyOn(service['bookingRepository'], 'findOne')
       .mockImplementation(() => Promise.resolve(result));
     expect(await service.findOne('1')).toEqual(result);
   });
