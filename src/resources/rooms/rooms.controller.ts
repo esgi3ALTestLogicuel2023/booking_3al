@@ -32,7 +32,7 @@ export class RoomsController {
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateRoomDto: UpdateRoomDto) {
-    return this.roomsService.update(+id, updateRoomDto);
+    return this.roomsService.update(id, updateRoomDto);
   }
 
   @Delete(':id')

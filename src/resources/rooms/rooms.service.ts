@@ -22,11 +22,11 @@ export class RoomsService {
   findOne(id: string): Promise<Room> {
     return this.roomRepository.findOne({
       where: { id: id },
-      relations: ['booking', 'compagny'],
+      relations: ['booking'],
     });
   }
 
-  update(id: number, updateRoomDto: UpdateRoomDto) {
+  update(id: string, updateRoomDto: UpdateRoomDto) {
     return this.roomRepository.update(id, updateRoomDto);
   }
 
