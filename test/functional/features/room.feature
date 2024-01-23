@@ -10,6 +10,16 @@ Feature: Operation for rooms
             }
         """
         Then response status is "201"
+
+         Scenario: Create a room error
+        When I POST "/rooms" with
+        """
+            {
+                "name": ,
+                "description": 
+            }
+        """
+        Then response status is "201"
         
     Scenario: Get rooms
         When I GET "/rooms" with
