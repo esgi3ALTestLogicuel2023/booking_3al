@@ -1,7 +1,7 @@
 import { World } from '@cucumber/cucumber';
-import { AppModule } from '../../../src/app.module';
-import { Test } from '@nestjs/testing';
 import { ValidationPipe } from '@nestjs/common';
+import { Test } from '@nestjs/testing';
+import { AppModule } from '../../../src/app.module';
 
 export class CustomWorld extends World {
   app: any;
@@ -14,7 +14,7 @@ export class CustomWorld extends World {
       imports: [AppModule],
     }).compile();
     const app = module.createNestApplication();
-    // app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe());
 
     await app.init();
     this.app = app;
