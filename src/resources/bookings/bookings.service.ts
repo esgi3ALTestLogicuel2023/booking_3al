@@ -56,6 +56,13 @@ export class BookingsService {
     return this.bookingRepository.findOne({ where: { id } });
   }
 
+  findBookingsByUserId(userId: string) {
+    return this.bookingRepository.find({
+      where: { user: { id: userId } },
+      relations: ['room'],
+    });
+  }
+
   async update(id: string, updateBookingDto: UpdateBookingDto) {
     try {
       const booking = await this.bookingRepository.findOne({
