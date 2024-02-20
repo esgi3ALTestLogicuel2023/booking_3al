@@ -18,7 +18,7 @@ export class BookingsService {
     private userRepository: Repository<User>,
   ) {}
 
-  async create(createBookingDto: CreateBookingDto) {
+  async create(createBookingDto: CreateBookingDto, userId: string) {
     try {
       const booking = new Booking();
       booking.startTime = new Date(createBookingDto.startTime);
@@ -28,21 +28,10 @@ export class BookingsService {
       booking.room = await this.roomRepository.findOneOrFail({
         where: { id: createBookingDto.room },
       });
-      const user = await this.userRepository.find({
-        where: { id: createBookingDto.userId },
+      booking.user = await this.userRepository.findOneOrFail({
+        where: { id: userId },
       });
-      if (user.length === 0) {
-        throw new HttpException(
-          {
-            status: HttpStatus.FORBIDDEN,
-            error: 'You are not authorize to create this resource',
-          },
-          HttpStatus.FORBIDDEN,
-        );
-      } else {
-        booking.user = user[0];
-        this.bookingRepository.save(booking);
-      }
+      return this.bookingRepository.save(booking);
     } catch (error) {
       throw error;
     }
@@ -69,41 +58,19 @@ export class BookingsService {
         where: { id: id },
         relations: ['room', 'user'],
       });
-      if (booking.user.id !== updateBookingDto.userId) {
-        throw new HttpException(
-          {
-            status: HttpStatus.FORBIDDEN,
-            error: 'You are not authorize to update this resource',
-          },
-          HttpStatus.FORBIDDEN,
-        );
-      }
       booking.startTime = new Date(updateBookingDto.startTime);
       booking.endTime = new Date(updateBookingDto.endTime);
       booking.room = await this.roomRepository.findOne({
         where: { id: updateBookingDto.room },
       });
-      this.bookingRepository.save(booking);
+      return this.bookingRepository.update(id, booking);
     } catch (error) {
       throw error;
     }
   }
 
-  async remove(id: string, userId: string) {
+  async remove(id: string) {
     try {
-      const booking = await this.bookingRepository.findOne({
-        where: { id },
-        relations: ['user'],
-      });
-      if (booking.user.id !== userId) {
-        throw new HttpException(
-          {
-            status: HttpStatus.FORBIDDEN,
-            error: 'You are not authorize to delete this resource',
-          },
-          HttpStatus.FORBIDDEN,
-        );
-      }
       this.bookingRepository.delete(id);
     } catch (error) {
       throw error;

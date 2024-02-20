@@ -12,10 +12,10 @@ export class OwnerGuard implements CanActivate {
     private readonly bookingService: BookingsService,
   ) {}
 
-  canActivate(context: ExecutionContext): boolean {
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const { user }: { user: User } = context.switchToHttp().getRequest();
-    const userBooking = this.bookingService.findBookingsByUserId(user.id);
-    if (!userBooking) {
+    const userBooking = await this.bookingService.findBookingsByUserId(user.id);
+    if (!userBooking.length) {
       return false;
     }
     return true;

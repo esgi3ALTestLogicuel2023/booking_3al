@@ -77,6 +77,10 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Get('/admin')
   getDashboard(@Request() req) {
-    return req.user;
+    return {
+      message: 'Admin Dashboard',
+      username: req.user.userName,
+      email: req.user.email,
+    };
   }
 }
