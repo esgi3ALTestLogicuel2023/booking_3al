@@ -14,6 +14,9 @@ import { CreateBookingDto } from './dto/create-booking.dto';
 import { UpdateBookingDto } from './dto/update-booking.dto';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { OwnerGuard } from './guards/owner.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { Role } from 'src/auth/enums/role.enum';
 
 @Controller('bookings')
 export class BookingsController {
@@ -35,7 +38,7 @@ export class BookingsController {
     return this.bookingsService.findAll();
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, OwnerGuard)
   @Get(':id') // <-- GET /bookings/1
   findOne(@Param('id') id: string) {
     return this.bookingsService.findOne(id);
@@ -51,7 +54,8 @@ export class BookingsController {
     return this.bookingsService.update(id, updateBookingDto);
   }
 
-  @UseGuards(JwtAuthGuard, OwnerGuard)
+  @UseGuards(JwtAuthGuard, OwnerGuard, RolesGuard)
+  @Roles(Role.Admin)
   @Delete('/:id/')
   remove(@Param('id') id: string) {
     return this.bookingsService.remove(id);
