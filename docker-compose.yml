@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: development
-    command: yarn start:dev
+    command: yarn start:dev #npm run start:dev
     environment:
       DATABASE_NAME: booking
       DATABASE_HOST: postgres
