@@ -14,8 +14,8 @@ import { AuthModule } from './auth/auth.module';
     BookingsModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
-      port: 5434,
-      host: '0.0.0.0',
+      port: 5432,
+      host: 'postgres',
       username: 'root',
       password: 'root',
       database: 'booking',

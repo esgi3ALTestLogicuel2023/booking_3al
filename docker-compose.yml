@@ -1,6 +1,36 @@
 version: '3.4'
 #Password: noubissie
 services:
+  booking-api:
+    container_name: booking-api
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    command: yarn start:dev
+    environment:
+      DATABASE_NAME: booking
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: admin
+      DATABASE_PASSWORD: admin
+      JWT_SECRET: f1619787d7f7b3ae982999513f76ec4e
+      NODE_ENV: development
+    volumes:
+      - ./:/home/node/back
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 512M
+    ports:
+      - '3006:3006'
+    depends_on:
+      - postgres
+    networks:
+      - default
+  
   postgres:
     image: postgres:latest
     restart: on-failure
