@@ -40,7 +40,6 @@ export class RoomsController {
   }
 
   @Delete(':id')
-  @UseGuards(JwtAuthGuard)
   remove(@Param('id') id: string) {
     return this.roomsService.remove(id);
   }
