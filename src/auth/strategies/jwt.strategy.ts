@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import 'dotenv/config';
 import { UpdateUserDto } from 'src/resources/users/dto/update-user.dto';
 import { Role } from '../enums/role.enum';
+import { User } from 'src/resources/users/entities/user.entity';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -15,11 +16,12 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: UpdateUserDto) {
+  async validate(payload: User) {
     return {
       email: payload.email,
-      username: payload.userName,
       roles: payload.isAdmin ? [Role.Admin, Role.User] : [Role.User],
+      userName: payload.userName,
+      id: payload.id,
     };
   }
 }

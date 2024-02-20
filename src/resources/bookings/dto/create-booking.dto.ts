@@ -25,9 +25,4 @@ export class CreateBookingDto {
   @IsNotEmpty()
   @IsString()
   title: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsUUID()
-  userId: string;
 }

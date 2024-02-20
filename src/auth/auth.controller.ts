@@ -81,6 +81,10 @@ export class AuthController {
   @Roles(Role.Admin)
   @Get('/admin')
   getDashboard(@Request() req) {
-    return req.user;
+    return {
+      message: 'Admin Dashboard',
+      username: req.user.userName,
+      email: req.user.email,
+    };
   }
 }
