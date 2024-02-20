@@ -13,6 +13,9 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
+  @Column({ default: false })
+  isAdmin: boolean;
+
   @OneToMany(() => Booking, (booking) => booking.user)
   booking: Booking[];
 }

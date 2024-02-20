@@ -12,7 +12,9 @@ import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local.guard';
 import { JwtAuthGuard } from './guards/jwt.guard';
 import { ApiBody } from '@nestjs/swagger';
-import { UpdateUserDto } from 'src/resources/users/dto/update-user.dto';
+import { Roles } from './decorators/roles.decorator';
+import { Role } from './enums/role.enum';
+import { RolesGuard } from './guards/roles.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -67,14 +69,16 @@ export class AuthController {
     return this.authService.login(req.user);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.User)
   @Get('/user')
   getProfile(@Request() req) {
     console.log(req.user);
     return req.user;
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(Role.Admin)
   @Get('/admin')
   getDashboard(@Request() req) {
     return req.user;
