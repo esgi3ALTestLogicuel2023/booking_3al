@@ -40,6 +40,10 @@ export class AuthController {
           type: 'string',
           description: 'The user username',
         },
+        isAdmin: {
+          type: 'boolean',
+          description: 'The user role',
+        },
       },
     },
   })
@@ -73,7 +77,6 @@ export class AuthController {
   @Roles(Role.User)
   @Get('/user')
   getProfile(@Request() req) {
-    console.log(req.user);
     return req.user;
   }
 
