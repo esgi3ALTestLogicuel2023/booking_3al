@@ -15,7 +15,7 @@ export class OwnerGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const { user }: { user: User } = context.switchToHttp().getRequest();
     const userBooking = await this.bookingService.findBookingsByUserId(user.id);
-    if (!userBooking.length) {
+    if (!userBooking.length && user.isAdmin === false) {
       return false;
     }
     return true;
