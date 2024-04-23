@@ -14,7 +14,7 @@ export class CustomWorld extends World {
       imports: [AppModule],
     }).compile();
     const app = module.createNestApplication();
-    // app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe());
 
     await app.init();
     this.app = app;

@@ -1,29 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNotEmpty, IsString, IsUUID } from 'class-validator';
+import { PartialType } from '@nestjs/mapped-types';
+import { CreateBookingDto } from './create-booking.dto';
 
-export class UpdateBookingDto {
-  @ApiProperty()
-  @IsDateString()
-  startTime: string;
-
-  @ApiProperty()
-  @IsDateString()
-  endTime: string;
-
-  @ApiProperty()
-  @IsUUID()
-  room: string;
-
-  @ApiProperty()
-  @IsString()
-  description: string;
-
-  @ApiProperty()
-  @IsString()
-  title: string;
-
-  @ApiProperty()
-  @IsNotEmpty()
-  @IsUUID()
-  userId: string;
-}
+export class UpdateBookingDto extends PartialType(CreateBookingDto) {}
