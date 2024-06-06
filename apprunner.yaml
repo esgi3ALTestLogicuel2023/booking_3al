@@ -13,13 +13,12 @@ build:
     - name: DB_PORT
       value: 5432
     - name: DB_USERNAME
-      value: "bookingadmin"
+      value: "postgres"
     - name: DB_PASSWORD
-      value: "hEkqBiBTG58DpG3KX5Eo"
+      value: "VLB81q4hUyczal1htEqS"
     - name: DB_HOSTNAME
-      value: "booking-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
+      value: "booking-api-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
 run:
-  runtime-version: 18.2
   command: npm run start:prod
   network: 
     port: 3000
