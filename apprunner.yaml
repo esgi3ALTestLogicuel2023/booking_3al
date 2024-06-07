@@ -13,9 +13,9 @@ build:
     - name: DB_USERNAME
       value: "postgres"
     - name: DB_PASSWORD
-      value: "VLB81q4hUyczal1htEqS"
+      value: "DKUFnIEgxzE7i2WIwrAR"
     - name: DB_HOSTNAME
-      value: "booking-api-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
+      value: "booking-esgi-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
 run:
   pre-run:
     - npm run typeorm migration:run
@@ -35,6 +35,6 @@ run:
     - name: DB_USERNAME
       value: "postgres"
     - name: DB_PASSWORD
-      value: "VLB81q4hUyczal1htEqS"
+      value: "DKUFnIEgxzE7i2WIwrAR"
     - name: DB_HOSTNAME
-      value: "booking-api-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
+      value: "booking-esgi-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
