@@ -5,8 +5,6 @@ build:
     build:        
       - npm install
       - npm run build
-    post-build:
-      - npm run typeorm migration:run
   env:
     - name: DB_NAME
       value: "bookingdb"
@@ -19,6 +17,8 @@ build:
     - name: DB_HOSTNAME
       value: "booking-api-db.ch0ogww0kkrj.eu-west-1.rds.amazonaws.com"
 run:
+  pre-run:
+    - npm run typeorm migration:run
   command: npm run start:prod
   network: 
     port: 3000
