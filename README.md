@@ -16,7 +16,7 @@ Le code contenu dans cette application **doit** respecter ces règles et en tant
 
 Pas de consigne
 
-## Installation
+## Installation test 
 
 ```bash
 $ yarn
@@ -30,7 +30,7 @@ $ yarn
 $ docker compose up -d #ou docker-compose up -d
 
 # watch mode
-$ yarn start:dev
+$F
 ```
 
 ## Database
